@@ -21,8 +21,6 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Test
-      run: go test -v ./...
       
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
