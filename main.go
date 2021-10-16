@@ -14,12 +14,16 @@ import (
 
 var db, collection = "test", "user"
 
+//Server Name
+var serverName string
+
 func main() {
 
 	var hostEnv = "localhost"
 	if len(os.Getenv("DB_HOST")) > 0 {
 		hostEnv = os.Getenv("DB_HOST")
 	}
+	serverName = lib.GetWord(10)
 
 	lib.Init(hostEnv, db, collection)
 	StartServer()
@@ -29,9 +33,11 @@ func main() {
 func StartServer() {
 	router := gin.Default()
 
+	serverResponse := fmt.Sprintf("Welcome to Dummy App \n Response Coming From %s", serverName)
 	// Get Welcome Message
 	router.GET("/hello", func(c *gin.Context) {
-		c.String(http.StatusOK, "Welcome to Dummy App")
+
+		c.String(http.StatusOK, serverResponse)
 
 	})
 	// Create user record
@@ -69,5 +75,5 @@ func StartServer() {
 		c.AbortWithStatus(http.StatusNotFound)
 	})
 
-	router.Run(":8000")
+	router.Run(":8080")
 }
