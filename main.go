@@ -17,8 +17,8 @@ var db, collection = "test", "user"
 func main() {
 
 	var hostEnv = "localhost"
-	if len(os.Getenv("HOST")) > 0 {
-		hostEnv = os.Getenv("HOST")
+	if len(os.Getenv("DB_HOST")) > 0 {
+		hostEnv = os.Getenv("DB_HOST")
 	}
 
 	lib.Init(hostEnv, db, collection)
